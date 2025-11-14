@@ -1,12 +1,32 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<!-- app/views/layouts/_header.html.erb -->
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <%= link_to "sample app", '#', id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   '/' %></li>
-        <li><%= link_to "Help",   '/help' %></li>
-        <li><%= link_to "Font",   '/font' %></li>
+    <%= link_to "Sample App", root_path, class: "navbar-brand", id: "logo" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Аккаунт
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= button_to "Выйти", logout_path, method: :delete, class: "dropdown-item text-danger border-0 bg-transparent w-100 text-left" %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <span class="navbar-text mr-3">
+              Вошел как: <%= current_user.name %>
+            </span>
+          </li>
+        <% else %>
+          <li class="nav-item"><%= link_to "Войти", login_path, class: "nav-link" %></li>
+        <% end %>
       </ul>
-    </nav>
+    </div>
   </div>
 </header>

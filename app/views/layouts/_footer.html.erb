@@ -1,13 +1,17 @@
-<footer class="footer">
-  <small>
-    The <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    by <a href="http://www.michaelhartl.com/">Michael Hartl</a>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About",   '/about' %></li>
-      <li><%= link_to "Contact", '/contact' %></li>
-      <li><a href="http://news.railstutorial.org/">News</a></li>
-    </ul>
-  </nav>
+<footer class="footer mt-5 py-3 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="text-muted mb-0">
+          &copy; <%= Time.current.year %> Sample App.
+        </p>
+      </div>
+      <div class="col-md-6 text-right">
+        <p class="text-muted mb-0">
+          <%= link_to "About", about_path, class: "text-muted mr-3" %>
+          <%= link_to "Home", root_path, class: "text-muted" %>
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>

@@ -1,13 +1,22 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+<% provide(:title, 'About') %>
+<h1>About</h1>
+<p>
+  Это страница "About" нашего замечательного приложения.
+</p>
 
-  <h2>
-    This is the ABOUT page for the
-    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-
-  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
-</div>
-
-<%= link_to image_tag("rails.png", alt: "Rails logo"), 'http://rubyonrails.org/' %>
+<% if logged_in? %>
+  <div class="well">
+    <h3>Информация о текущем пользователе:</h3>
+    <p><strong>Имя:</strong> <%= current_user.name %></p>
+    <p><strong>Email:</strong> <%= current_user.email %></p>
+    <p><strong>Зарегистрирован:</strong> <%= l current_user.created_at, format: :long %></p>
+    <% if current_user.last_login_at %>
+      <p><strong>Последний вход:</strong> <%= l current_user.last_login_at, format: :long %></p>
+      <p><small>Время с последнего входа: <%= time_ago_in_words(current_user.last_login_at) %> назад</small></p>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-info">
+    <p>Вы не авторизованы. <%= link_to "Войдите", login_path %> чтобы увидеть информацию о себе.</p>
+  </div>
+<% end %>
